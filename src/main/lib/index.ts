@@ -3,10 +3,11 @@ import { homedir } from "os"
 import { appDirName, fileEncoding, welcomeNoteFilename } from "@shared/constant"
 import { ensureDir, readFile, readdir, remove, stat, writeFile } from "fs-extra"
 import { TNoteInfo } from "@shared/models"
-import { TCreateNote, TDeleteNote, TGetNotes, TReadNote, TWriteNote } from "@shared/types"
+import { TCloseApp, TCreateNote, TDeleteNote, TGetNotes, TReadNote, TWriteNote } from "@shared/types"
 import { dialog } from "electron"
 import { isEmpty } from 'lodash'
 import welcomeNoteFile from '../../../resources/welcomeNote.md?asset'
+// import { mainWindow } from "../mainWindow"
 
 export const getRootDir = () => {
     return path.join(homedir(), "documents", appDirName)
@@ -119,3 +120,5 @@ export const deleteNote: TDeleteNote = async (fileName) => {
     return true;
 
 }
+
+

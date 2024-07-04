@@ -1,4 +1,4 @@
-import { TCreateNote, TDeleteNote, TGetNotes, TReadNote, TWriteNote } from "@shared/types"
+import { TCloseApp, TCreateNote, TDeleteNote, TFullSize, TGetNotes, THideApp, TMaximizeOrUnmaximize, TReadNote, TWriteNote } from "@shared/types"
 import { contextBridge, ipcRenderer } from "electron"
 
 if (!process.contextIsolated) {
@@ -14,6 +14,10 @@ try {
     writeNote: (...args: Parameters<TWriteNote>) => ipcRenderer.invoke('writeNote', ...args),
     createNote: (...args: Parameters<TCreateNote>) => ipcRenderer.invoke('createNote', ...args),
     deleteNote: (...args: Parameters<TDeleteNote>) => ipcRenderer.invoke('deleteNote', ...args),
+    closeApp: (...args: Parameters<TCloseApp>) => ipcRenderer.send('closeApp', ...args),
+    maximizeOrUnmaximize: (...args: Parameters<TMaximizeOrUnmaximize>) => ipcRenderer.send('maximizeOrUnmaximize', ...args),
+    hideApp: (...args: Parameters<THideApp>) => ipcRenderer.send('hideApp', ...args),
+    fullSize: (...args: Parameters<TFullSize>) => ipcRenderer.send('fullSize', ...args),
   })
 
 } catch (error) {

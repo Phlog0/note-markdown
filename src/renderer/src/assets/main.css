@@ -14,16 +14,18 @@
     @apply font-mono antialiased text-white;
     @apply overflow-hidden;
     @apply bg-[#292B31];
+   
   }
 
   /* КАСТОМНАЯ DRAG-ШАПКА */
-  /* header {
+
+  header{
     -webkit-app-region: drag;
   }
 
   button {
     -webkit-app-region: no-drag;
-  } */
+  }
 
   ::-webkit-scrollbar {
     @apply w-2;

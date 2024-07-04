@@ -6,10 +6,13 @@ import { createNote, deleteNote, getNotes, readNote, writeNote } from './lib' //
 import { TCreateNote, TDeleteNote, TGetNotes, TReadNote, TWriteNote } from '@shared/types'
 
 function createWindow(): void {
+  // const mainWindow = createnewBrowserWindow()
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
+    resizable: true,
+    frame: false,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -23,9 +26,11 @@ function createWindow(): void {
     }
   })
 
+
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
+
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
@@ -34,6 +39,26 @@ function createWindow(): void {
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
+  ipcMain.on('closeApp', () => mainWindow.close())
+  ipcMain.on('maximizeOrUnmaximize', () => {
+    if (!mainWindow.isMaximized()) {
+      mainWindow.maximize()
+    } else {
+      mainWindow.unmaximize()
+    }
+
+
+  })
+  ipcMain.on('hideApp', () => mainWindow.minimize())
+  ipcMain.on('fullSize', () => {
+    if (!mainWindow.isFullScreen()) {
+
+      mainWindow.setFullScreen(true)
+    } else {
+      mainWindow.setFullScreen(false)
+
+    }
+  })
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
   } else {
@@ -47,6 +72,7 @@ function createWindow(): void {
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
+
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
@@ -72,6 +98,7 @@ app.whenReady().then(() => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common

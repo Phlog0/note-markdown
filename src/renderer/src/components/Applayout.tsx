@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 export const RootLayout = ({ className, children, ...props }: ComponentProps<'main'>) => {
   return (
-    <main {...props} className={twMerge('flex h-screen w-screen', className)}>
+    <main {...props} className={twMerge('h-screen w-screen gridRootTemplates', className)}>
       {children}
     </main>
   )
