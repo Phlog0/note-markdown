@@ -17,7 +17,7 @@ export const DeleteNoteButton = ({ ...props }: TActionButtonProps) => {
 
   return (
     <ActionButton {...props} onClick={deleteNodeHandle}>
-      <MdDelete className="w-4 h-4 text-zinc-300" />
+      <MdDelete className="w-4 h-4 text-textColor" />
     </ActionButton>
   )
 }

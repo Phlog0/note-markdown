@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --primary: hsl(0, 0%, 25%);
+    --color-text-base: hsl(0, 0%, 82%);
+    --markDown-bg: hsl(0, 0%, 12%);
+  }
   #root {
     @apply h-full;
   }
@@ -13,13 +18,12 @@
     @apply select-none;
     @apply font-mono antialiased text-white;
     @apply overflow-hidden;
-    @apply bg-[#292B31];
-   
+    /* @apply bg-[#292B31]; */
   }
 
   /* КАСТОМНАЯ DRAG-ШАПКА */
 
-  header{
+  header {
     -webkit-app-region: drag;
   }
 
@@ -38,4 +42,15 @@
   ::-webkit-scrollbar-track {
     @apply bg-transparent;
   }
+}
+
+.theme-dark {
+  --primary: hsl(0, 0%, 25%);
+  --color-text-base: hsl(0, 0%, 82%);
+  --markDown-bg: hsl(0, 0%, 12%);
+}
+.theme-light {
+  --primary: hsl(0, 0%, 82%);
+  --color-text-base: hsl(0, 0%, 25%);
+  --markDown-bg: hsl(0, 0%, 89%);
 }

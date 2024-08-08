@@ -5,7 +5,7 @@ export const WindowButton = ({ className, children, ...props }: ComponentProps<'
   return (
     <button
       className={twMerge(
-        'bg-zinc-700 p-3 flex justify-center items-center hover:bg-zinc-600 transition-colors',
+        'bg-primary p-3 flex justify-center items-center hover:bg-mdColor transition-colors',
         className
       )}
       {...props}

@@ -7,10 +7,12 @@ interface NoteState {
   notes: TNoteInfo[] | null
   selectedNoteIndex: number | null | undefined
   selectedNote: TNoteInfoContent | null | undefined
+  lightMode: boolean
   setSelectedNote: (index: number) => void
   createNewNote: () => void
   deleteNote: (key: string) => void
   writeNote: (title: TNoteInfo["title"], content: NoteContent) => void
+  changeTheme: () => void
 }
 
 
@@ -25,6 +27,7 @@ export const useNoteStore = create<NoteState>()((set, get) => ({
   notes: notes,
   selectedNoteIndex: null,
   selectedNote: null,
+  lightMode: false,
 
   setSelectedNote: async (index: number) => {
     const note = get()?.notes?.[index] as TNoteInfo
@@ -86,6 +89,8 @@ export const useNoteStore = create<NoteState>()((set, get) => ({
       selectedNoteIndex: 0,
     }))
   },
+
+  changeTheme: () => set((state) => ({ lightMode: !state.lightMode })),
 
 
 }))

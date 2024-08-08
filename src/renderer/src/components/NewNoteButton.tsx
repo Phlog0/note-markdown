@@ -7,7 +7,7 @@ export const NewNoteButton = ({ ...props }: TActionButtonProps) => {
   const createNewNote = useNoteStore((state) => state.createNewNote)
   return (
     <ActionButton {...props} onClick={createNewNote}>
-      <FaFile className="w-4 h-4 text-zinc-300" />
+      <FaFile className="w-4 h-4 text-textColor" />
     </ActionButton>
   )
 }
